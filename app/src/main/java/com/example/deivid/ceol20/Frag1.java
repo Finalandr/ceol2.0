@@ -18,6 +18,8 @@ public class Frag1 extends Fragment {
     Button play;
     MediaPlayer mp;
 
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View viewmusic= inflater.inflate(R.layout.frag1_layout, container, false);
 
