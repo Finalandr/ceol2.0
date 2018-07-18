@@ -30,11 +30,11 @@ public class Frag1 extends Fragment {
             public void onClick(View v) {
                 if(mp.isPlaying()){
                     mp.pause();
-                    play.setBackgroundResource(R.drawable.play2);
+                    play.setBackgroundResource(R.drawable.descarga10);
                     Toast.makeText(getActivity(),"Pausa",Toast.LENGTH_SHORT).show();
                 }else{
                     mp.start();
-                    play.setBackgroundResource(R.drawable.pause2);
+                    play.setBackgroundResource(R.drawable.descarga);
                     Toast.makeText(getActivity(),"Play",Toast.LENGTH_SHORT).show();
                 }
             }

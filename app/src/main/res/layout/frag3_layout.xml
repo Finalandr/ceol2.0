@@ -4,21 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="158dp"
-        android:layout_height="108dp"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center"
-        android:text="WhatApps"
-        android:textColor="#FFF"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/negro"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="70dp">
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="416dp"
+            android:layout_height="119dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/imggg"
+            tools:ignore="ContentDescription,MissingConstraints"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="158dp"
+            android:layout_height="108dp"
+            android:layout_centerInParent="true"
+            android:background="@color/azulosc"
+            android:gravity="center"
+            android:text="Whatsapp"
+            android:textColor="#FFF"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.334"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>
