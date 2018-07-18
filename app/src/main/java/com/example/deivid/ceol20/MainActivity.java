@@ -1,8 +1,15 @@
 package com.example.deivid.ceol20;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -64,8 +71,25 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        checkUserPermission();
 
     }
+
+    private void checkUserPermission(){
+        if(Build.VERSION.SDK_INT>=23){
+            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},123);
+                return;
+            }
+        }
+        loadSongs();
+    }
+
+    private void loadSongs(){
+
+        }
+
 
 
     @Override
