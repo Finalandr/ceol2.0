@@ -110,7 +110,6 @@ public class Frag1 extends Fragment {
                     }
                 }
             });
-            checkUserPermission();
 
             Thread t = new runThread();
             t.start();
@@ -145,26 +144,17 @@ public class Frag1 extends Fragment {
 
         }
 
-        private void checkUserPermission(){
-            if(Build.VERSION.SDK_INT>=23){
-                if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED){
-                    requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},123);
-                    return;
-                }
-            }
-            loadSongs();
-        }
+
 
         @Override
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             switch (requestCode){
                 case 123:
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                        loadSongs();
+
                     }else{
                         Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_SHORT).show();
-                        checkUserPermission();
+
                     }
                     break;
                 default:
@@ -174,28 +164,7 @@ public class Frag1 extends Fragment {
 
         }
 
-        private void loadSongs(){
-            Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-            String selection = MediaStore.Audio.Media.IS_MUSIC+"!=0";
-            Cursor cursor = getContentResolver().query(uri,null,selection,null,null);
-            if(cursor != null){
-                if(cursor.moveToFirst()){
-                    do{
-                        String name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DISPLAY_NAME));
-                        String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-                        String url = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
 
-                        SongInfo s = new SongInfo(name,artist,url);
-                        _songs.add(s);
-
-                    }while (cursor.moveToNext());
-                }
-
-                cursor.close();
-                songAdapter = new SongAdapter(getActivity(),_songs);
-
-            }
-        }
 
     }
 
