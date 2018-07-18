@@ -35,7 +35,7 @@ public class Frag1 extends Fragment {
                 }else{
                     mp.start();
                     play.setBackgroundResource(R.drawable.pause2);
-                    Toast.makeText(getActivity(),"Play",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Play1",Toast.LENGTH_SHORT).show();
                 }
             }
         });
