@@ -24,20 +24,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<SongInfo> _songs = new ArrayList<SongInfo>();;
+
+    public ArrayList<SongInfo> titulo = new ArrayList<SongInfo>();
     SongAdapter songAdapter;
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    public SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    public ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +70,23 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        checkUserPermission();
+        checkUserPermission();*/
 
+
+        //Acá se supone que se inicia el adapter
+        //Acá se supone que se inicia el adapter
+        //Acá se supone que se inicia el adapter
+        //Acá se supone que se inicia el adapter
+        //Acá se supone que se inicia el adapter
+        //Acá se supone que se inicia el adapter
+
+        ListView listView = (ListView) findViewById(R.id.listview);
+        try {
+            SongAdapter sg = new SongAdapter(this, titulo   );
+            listView.setAdapter(sg);
+        }catch (Exception e){
+
+        }
     }
 
     private void checkUserPermission(){
@@ -79,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        loadSongs();
+        //loadSongs();
     }
 
-    private void loadSongs(){
+   /* private void loadSongs(){
 
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String selection = MediaStore.Audio.Media.IS_MUSIC+"!=0";
@@ -106,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        }
+        }*/
 
 
 
@@ -160,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
