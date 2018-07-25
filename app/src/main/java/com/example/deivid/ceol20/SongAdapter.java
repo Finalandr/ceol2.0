@@ -1,69 +1,84 @@
 package com.example.deivid.ceol20;
 
+import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongHolder> {
+public class SongAdapter extends BaseAdapter {
+    public Activity activity;
+    public ArrayList<SongInfo> items;
 
-    private ArrayList<SongInfo> _songs = new ArrayList<SongInfo>();
-    private Context context;
-    private OnItemClickListener mOnItemClickListener;
-
-    public SongAdapter(Context context, ArrayList<SongInfo> songs) {
-        this.context = context;
-        this._songs = songs;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick(Button b , View view, SongInfo obj, int position);
-    }
-
-    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
-        this.mOnItemClickListener = mItemClickListener;
+    public SongAdapter(Context activity, ArrayList<SongInfo> items) {
+        this.activity = (Activity) activity;
+        this.items = items;
     }
 
 
     @Override
-    public SongHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View myView = LayoutInflater.from(context).inflate(R.layout.songs,viewGroup,false);
-        return new SongHolder(myView);
+    public int getCount() {
+        return items.size();
+        //Proporciona el numero de elementos del ArrayList
     }
 
-    @Override
-    public void onBindViewHolder(final SongHolder songHolder, final int i) {
-        final SongInfo s = _songs.get(i);
-        songHolder.tvSongName.setText(_songs.get(i).getSongname());
-        songHolder.tvSongArtist.setText(_songs.get(i).getSongartist());
-        songHolder.btnAction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onItemClick(songHolder.btnAction,v, s, i);
-                }
-            }
-        });
+    public void clear() {
+        items.clear();
+        //Limpia el Array
     }
 
-    @Override
-    public int getItemCount() {
-        return _songs.size();
-    }
+    public void addAll(ArrayList<SongInfo> titulo) {
+        for (int i = 0; i < titulo.size(); i++) {
+            items.add(titulo.get(i));
 
-    public class SongHolder extends RecyclerView.ViewHolder {
-        TextView tvSongName,tvSongArtist;
-        Button btnAction;
-        public SongHolder(View itemView) {
-            super(itemView);
-            tvSongName = (TextView) itemView.findViewById(R.id.tvSongName);
-            tvSongArtist = (TextView) itemView.findViewById(R.id.tvArtistName);
-            btnAction = (Button) itemView.findViewById(R.id.btnPlay);
+            //Para la lista y el ancho del titulo
         }
     }
+
+    @Override
+    public Object getItem(int position1) {
+        return items.get(position1);
+        //para obtener la lista
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+        //para obtener la lista
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        //El que inflará la lista (personalizará)
+
+        View v = convertView;
+        if (convertView == null) {
+            LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inf.inflate(R.layout.item_ca, null);
+        }
+
+        SongInfo sng = items.get(position);
+
+        TextView titl = v.findViewById(R.id.titulo);
+        titl.setText(sng.getTitulo());
+
+        TextView titulo2 = v.findViewById(R.id.titul2);
+        titulo2.setText(sng.getTitulo2());
+
+
+        ImageView imagen = v.findViewById(R.id.img);
+        imagen.setImageDrawable((Drawable) sng.getDrawableRes());
+
+        return v;
+    }
 }
+
+
+
+
