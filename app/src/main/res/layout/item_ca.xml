@@ -34,7 +34,7 @@
             tools:ignore="RtlCompat" />
 
         <TextView
-            android:id="@+id/titul2"
+            android:id="@+id/artista"
             android:layout_width="187dp"
             android:layout_height="31dp"
             android:layout_alignBottom="@+id/img"
